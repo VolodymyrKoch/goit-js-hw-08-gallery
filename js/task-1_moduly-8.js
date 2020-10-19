@@ -97,27 +97,31 @@ array.forEach((el) => {
     </a></li>`);
 });
 
-// let bigImg = document.querySelector("[dataset-source]");  // непотрібне!!!
-// console.log(bigImg);
+let bigImg = document.querySelector("[data-source]");  // непотрібне!!!
+console.log(bigImg);
 
 ulList.addEventListener("click", (e) => {
   e.preventDefault();
+  console.log(e.target.nodeName);
   if (e.target.nodeName !== "IMG") { return }   
   let img = e.target;
   openModal(img.dataset.source); 
   // console.log(e.target.nodeName);
   // console.dir(e);
-  
-})
+  })
 
 const openModal = function (picture) {
     div.classList.add("is-open");
   console.log(div);
   let img = document.querySelector('.lightbox__image');
-  img.removeAttribute("src")
-  img.setAttribute("src",picture)
+  // img.removeAttribute("src") //зайве!!
+  img.setAttribute("src", picture)
+  console.log(div.classList);
+
 }
 const btn = document.querySelector(".lightbox__button");
 btn.addEventListener("click", () => { 
   div.classList.remove("is-open")
+  console.log(div.classList);
 })
+
