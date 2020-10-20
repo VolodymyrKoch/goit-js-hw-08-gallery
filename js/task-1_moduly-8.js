@@ -85,43 +85,37 @@ const array= [
   },
 ];
 
-const ulList = document.querySelector(".js-gallery");
-const div = document.querySelector(".js-lightbox")
+const ulListRef = document.querySelector(".js-gallery");
+const divWrapper = document.querySelector(".js-lightbox");
+const imgRef = document.querySelector('.lightbox__image');
 
 array.forEach((el) => {
-  ulList.insertAdjacentHTML("afterbegin", `<li class="gallery__item">
+  ulListRef.insertAdjacentHTML("afterbegin", `<li class="gallery__item">
   <a class="gallery__link" href="${el.original}"> 
    <img class="gallery__image" src="${el.preview}" 
    data-source="${el.original}"
     alt="${el.description}" />
     </a></li>`);
-});
-
-let bigImg = document.querySelector("[data-source]");  // непотрібне!!!
-console.log(bigImg);
-
-ulList.addEventListener("click", (e) => {
+    });
+ulListRef.addEventListener("click", (e) => {
   e.preventDefault();
-  console.log(e.target.nodeName);
-  if (e.target.nodeName !== "IMG") { return }   
-  let img = e.target;
-  openModal(img.dataset.source); 
-  // console.log(e.target.nodeName);
-  // console.dir(e);
-  })
+    if (e.target.nodeName !== "IMG") { return }   
+  let imgRef = e.target;
+  openModal(imgRef.dataset.source); 
+    })
 
-const openModal = function (picture) {
-    div.classList.add("is-open");
-  console.log(div);
-  let img = document.querySelector('.lightbox__image');
-  // img.removeAttribute("src") //зайве!!
-  img.setAttribute("src", picture)
-  console.log(div.classList);
-
-}
+const openModal = function (foto) {
+    divWrapper.classList.add("is-open");
+  imgRef.setAttribute("src", foto)
+  }
 const btn = document.querySelector(".lightbox__button");
 btn.addEventListener("click", () => { 
-  div.classList.remove("is-open")
-  console.log(div.classList);
-})
+  divWrapper.classList.remove("is-open")
+  })
+window.addEventListener("keydown", (e) => { 
+   if (e.key === "Escape") {
+    divWrapper.classList.remove("is-open")
+  }
+  })
+
 
