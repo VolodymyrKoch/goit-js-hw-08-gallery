@@ -55,7 +55,8 @@ const btn = document.querySelector(".lightbox__button");
 
 const clouseModal =(e) => { 
   if (e.target.nodeName !== "IMG") {
-   divWrapper.classList.remove("is-open")
+    divWrapper.classList.remove("is-open")
+    
     divWrapper.removeEventListener('click', clouseModal)
     window.removeEventListener("keydown", clouseModalEsc)
     }
@@ -63,8 +64,10 @@ const clouseModal =(e) => {
   
 const clouseModalEsc = (e) => { 
      if (e.key === "Escape") {
-      divWrapper.classList.remove("is-open")
-     window.removeEventListener("keydown", clouseModalEsc)
+       divWrapper.classList.remove("is-open")
+       
+       window.removeEventListener("keydown", clouseModalEsc)
+       divWrapper.removeEventListener('click', clouseModal)
    }
 }
 ulListRef.addEventListener("click", imgTru)
