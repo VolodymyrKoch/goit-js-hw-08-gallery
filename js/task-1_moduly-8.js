@@ -56,8 +56,9 @@ const btn = document.querySelector(".lightbox__button");
 const clouseModal =(e) => { 
   if (e.target.nodeName !== "IMG") {
    divWrapper.classList.remove("is-open")
-  divWrapper.removeEventListener('click', clouseModal)
-  }
+    divWrapper.removeEventListener('click', clouseModal)
+    window.removeEventListener("keydown", clouseModalEsc)
+    }
   }
   
 const clouseModalEsc = (e) => { 
