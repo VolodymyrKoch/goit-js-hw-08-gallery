@@ -34,26 +34,40 @@ gallery_items.forEach((el) => {
     alt="${el.description}" />
     </a></li>`);
     });
-ulListRef.addEventListener("click", (e) => {
+
+const imgTru = (e) => {
   e.preventDefault();
     if (e.target.nodeName !== "IMG") { return }   
   let imgRef = e.target;
   openModal(imgRef.dataset.source); 
-    })
+    }
+
 
 const openModal = function (foto) {
   divWrapper.classList.add("is-open");
   imgRef.removeAttribute('src')
   imgRef.setAttribute("src", foto)
-  }
+
+  btn.addEventListener("click", clouseModal)
+ window.addEventListener("keydown", clouseModalEsc)
+}
+  
 const btn = document.querySelector(".lightbox__button");
-btn.addEventListener("click", () => { 
+
+const clouseModal =() => { 
   divWrapper.classList.remove("is-open")
-  })
-window.addEventListener("keydown", (e) => { 
-   if (e.key === "Escape") {
-    divWrapper.classList.remove("is-open")
+  btn.removeEventListener("click", clouseModal)
   }
-  })
+  
+ const clouseModalEsc=(e) => { 
+   if (e.key === "Escape") {
+      divWrapper.classList.remove("is-open")
+     window.removeEventListener("keydown", clouseModalEsc)
+   }
+ 
+}
+
+ulListRef.addEventListener("click", imgTru)
+  
 
 
