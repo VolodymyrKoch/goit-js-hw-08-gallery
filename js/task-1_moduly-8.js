@@ -42,31 +42,30 @@ const imgTru = (e) => {
   openModal(imgRef.dataset.source); 
     }
 
-
 const openModal = function (foto) {
   divWrapper.classList.add("is-open");
   imgRef.removeAttribute('src')
   imgRef.setAttribute("src", foto)
 
-  btn.addEventListener("click", clouseModal)
+  divWrapper.addEventListener("click", clouseModal)
  window.addEventListener("keydown", clouseModalEsc)
-}
+  }
   
 const btn = document.querySelector(".lightbox__button");
 
-const clouseModal =() => { 
-  divWrapper.classList.remove("is-open")
-  btn.removeEventListener("click", clouseModal)
+const clouseModal =(e) => { 
+  if (e.target.nodeName !== "IMG") {
+   divWrapper.classList.remove("is-open")
+  divWrapper.removeEventListener('click', clouseModal)
+  }
   }
   
- const clouseModalEsc=(e) => { 
-   if (e.key === "Escape") {
+const clouseModalEsc = (e) => { 
+     if (e.key === "Escape") {
       divWrapper.classList.remove("is-open")
      window.removeEventListener("keydown", clouseModalEsc)
    }
- 
 }
-
 ulListRef.addEventListener("click", imgTru)
   
 
